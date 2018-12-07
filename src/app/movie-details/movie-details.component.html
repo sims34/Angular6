@@ -1,0 +1,38 @@
+<mat-card class="example-card" *ngIf="dataSource">
+ 
+  <mat-card-content>
+    <h3>{{dataSource.title}}</h3>
+   <p> {{dataSource.overview}}<p>
+
+   <p>Comments</p>
+   <p *ngFor="let comment of dataSource.comments">{{comment.title}}
+    <button mat-button  (click)="deletComment(comment.id)">
+    Delete
+    </button>
+    </p>
+   <p *ngIf="addComment">{{addComment.title}}<p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+
+  <span>Ajout d'un commentaire pour {{dataSource.title}}</span>
+  <form #f="ngForm">
+    <mat-form-field>  
+      <input matInput name="title" placeholder="Titre du commentaire" [required]="true" ngModel
+      appSoftLanguage
+      #title="ngModel"
+      /> 
+      <mat-error *ngIf="title.hasError('required')">
+        le titre est obligatoire.
+      </mat-error>
+     
+    </mat-form-field>
+      <button mat-button (click)="sendForm(f.value)" 
+      [disabled]="f.invalid">
+      Ajouter
+      </button>
+</form>
+</mat-card>
