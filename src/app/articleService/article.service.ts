@@ -7,7 +7,7 @@ import { Http } from '@angular/http';
   providedIn: 'root'
 })
 export class ArticleService {
-  private BaseUrl = "https://localhost:44396/api/";
+  private BaseUrl = `https://localhost:44396/api`;
 
   constructor(private http : Http) { }
 
@@ -20,6 +20,7 @@ export class ArticleService {
             .pipe(
               map(
                 (data)=>{
+                  console.log("data", data.json());
                 return data.json();
             },(error)=>{
               console.log("errro", error);

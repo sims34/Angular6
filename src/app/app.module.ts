@@ -17,11 +17,14 @@ import { ErrorComponent } from './error/error.component';
 import { ChangeColorPipe } from './change-color.pipe';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SoftLanguageDirective } from './soft-language.directive';
+import { ArticleComponent } from './article/article.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const routes : Routes = [
   {path : '', component : HomeComponent},
   {path : 'movies', component : MoviesComponent},
   {path : 'movies/:id', component : MovieDetailsComponent},
+  {path : 'article', component : ArticleComponent},
   {path : '**', component : ErrorComponent}
 
 
@@ -34,7 +37,8 @@ const routes : Routes = [
     ErrorComponent,
     ChangeColorPipe,
     MovieDetailsComponent,
-    SoftLanguageDirective
+    SoftLanguageDirective,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,7 @@ const routes : Routes = [
     MatTableModule,
     HttpModule,
     MatCardModule,
+    MatProgressBarModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule
