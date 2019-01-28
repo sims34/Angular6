@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../articleService/article.service';
+import { MatTableDataSource } from '@angular/material';
+
 
 export interface IArticle {
   label: string;
   description: string;
-  priceHT: number;
- 
+  priceHT: number; 
 }
 
 @Component({
@@ -15,21 +16,27 @@ export interface IArticle {
 })
 export class ArticleComponent implements OnInit {
   displayedColumns : string[] = ['label','description','priceHT'];
-  articles : IArticle[];
-  isWaiting: Boolean = false;
-  constructor(private articleService : ArticleService) {
-    
-   
-  }
-  
-  ngOnInit() {
-    this.isWaiting = true;
-    this.articleService.GetAllArticles().subscribe(
-      data =>{
-        this.articles= data;
-        this.isWaiting = false;
-      }  
-      );
+  articles = new MatTableDataSource<IArticle>(); 
+  public doFilter = (value: string) => {
+    this.articles.filter = value.trim().toLocaleLowerCase();
   }
 
+  isWaiting: Boolean = false;
+  constructor(private articleService : ArticleService) {  
+   
+  }  
+   
+  ngOnInit() {
+    this.getArticles();
+
+  }
+
+  private getArticles() {
+    this.isWaiting = true;
+    this.articleService.GetAllArticles().subscribe(data => {
+      this.articles.data = data as IArticle[];
+      this.isWaiting = false;
+    });
+    
+  }
 }

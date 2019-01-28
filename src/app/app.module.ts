@@ -20,6 +20,8 @@ import { SoftLanguageDirective } from './soft-language.directive';
 import { ArticleComponent } from './article/article.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
+
+
 const routes : Routes = [
   {path : '', component : HomeComponent},
   {path : 'movies', component : MoviesComponent},

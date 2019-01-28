@@ -1,4 +1,8 @@
 <mat-progress-bar mode="query" *ngIf="isWaiting"></mat-progress-bar>
+<mat-form-field>
+    <input matInput (keyup)="doFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
 <table mat-table [dataSource]="articles" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -17,7 +21,7 @@
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="priceHT">
-    <th mat-header-cell *matHeaderCellDef> pricHT </th>
+    <th mat-header-cell *matHeaderCellDef> priceHT </th>
     <td mat-cell *matCellDef="let element"> {{element.priceHT}} </td>
   </ng-container>
 
